@@ -138,6 +138,11 @@ export default {
 			type: Object,
 			'default': null
 		},
+    // Add delay between width and height at error messages
+    widthHeightDelay: {
+      type: String,
+      default: '*'
+    },
 		// 剪裁图片的宽
 		width: {
 			type: Number,
@@ -515,7 +520,7 @@ export default {
 				// 图片像素不达标
 				if (nWidth < width || nHeight < height) {
 					that.hasError = true;
-					that.errorMsg = lang.error.lowestPx + width + '*' + height;
+					that.errorMsg = lang.error.lowestPx + width + that.widthHeightDelay + height;
 					return false;
 				}
 				if (ratio > nRatio) {
