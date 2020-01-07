@@ -21,7 +21,14 @@
 				</i>
 				<span class="vicp-hint" v-show="loading !== 1">{{ lang.hint }}</span>
 				<span class="vicp-no-supported-hint" v-show="!isSupported">{{ lang.noSupported }}</span>
-				<input type="file" v-show="false" v-if="step == 1" @change="handleChange" accept="png" ref="fileinput">
+				<input
+          type="file"
+          v-show="false"
+          v-if="step == 1"
+          ref="fileinput"
+          :accept="acceptedImgExtForInput"
+          @change="handleChange"
+        >
 			</div>
 			<div class="vicp-error" v-show="hasError">
 				<i class="vicp-icon2"></i> {{ errorMsg }}
@@ -195,6 +202,11 @@ export default {
 			type: String,
 			'default': 'png'
 		},
+    // Accepted file extentions
+    acceptedImgExt: {
+      type: Array,
+      default: () => []
+    },
 		// 图片背景 jpg情况下生效
 		imgBgc: {
 			type: String,
@@ -307,7 +319,18 @@ export default {
 			}
 		}
 	},
+
 	computed: {
+    // Accepted file ext for input 
+    acceptedImgExtForInput () {
+      if (!this.acceptedImgExt || typeof this.acceptedImgExt !== 'array') {
+        return undefined
+      }
+      const acceptedStr = this.acceptedImgExt.join(',')
+      console.log('accepted for input', acceptedStr)
+      return acceptedStr
+    },
+
 		// 进度条样式
 		progressStyle() {
 			let {
