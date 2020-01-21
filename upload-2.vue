@@ -63,7 +63,10 @@
 						<div class="vicp-img-shade vicp-img-shade-2" :style="sourceImgShadeStyle"></div>
 					</div>
 
-					<div class="vicp-range">
+          <div
+            class="vicp-range"
+            v-if="scale.naturalWidth > zoomChallangeMinWidth && scale.naturalHeight > zoomChallangeMinHeight"
+          >
 						<input type="range" :value="scale.range" step="1" min="0" max="100" @mousemove="zoomChange">
 						<i @mousedown="startZoomSub" @mouseout="endZoomSub" @mouseup="endZoomSub" class="vicp-icon5"></i>
 						<i @mousedown="startZoomAdd" @mouseout="endZoomAdd" @mouseup="endZoomAdd" class="vicp-icon6"></i>
@@ -167,6 +170,14 @@ export default {
 			type: Number,
 			default: 200
 		},
+    zoomChallangeMinWidth: {
+      type: Number,
+      default: 200
+    },
+    zoomChallangeMinHeight: {
+      type: Number,
+      default: 200
+    },
 		// 不显示旋转功能
 		noRotate: {
 			type: Boolean,
