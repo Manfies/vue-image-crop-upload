@@ -65,7 +65,7 @@
 
           <div
             class="vicp-range"
-            v-if="scale.naturalWidth > zoomChallangeMinWidth && scale.naturalHeight > zoomChallangeMinHeight"
+            v-if="scale.naturalWidth >= zoomChallangeMinWidth && scale.naturalHeight >= zoomChallangeMinHeight"
           >
 						<input type="range" :value="scale.range" step="1" min="0" max="100" @mousemove="zoomChange">
 						<i @mousedown="startZoomSub" @mouseout="endZoomSub" @mouseup="endZoomSub" class="vicp-icon5"></i>
