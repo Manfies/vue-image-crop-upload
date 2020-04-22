@@ -463,6 +463,9 @@ export default {
 			// 延时是为了显示动画效果呢，哈哈哈
 			setTimeout(()=> {
 				this.step = no;
+        if (no == 2) {
+          this.$emit('back')
+        }
 			}, 200);
 		},
 
